@@ -15,20 +15,20 @@ sub infinity { 'infinity' }
 sub cmp {
     my ( $class, $p1, $p2 ) = @_;
 
-    if ( !$p1->isa('Point') ) {
-        if ( $p2->isa('Point') ) {
+    if ( !$p1->isa($class) ) {
+        if ( $p2->isa($class) ) {
             return 1;
         }
-        if ( !$p2->isa('Point') ) {
+        if ( !$p2->isa($class) ) {
             return 0;
         }
     }
 
-    if ( !$p2->isa('Point') ) {
-        if ( $p1->isa('Point') ) {
+    if ( !$p2->isa($class) ) {
+        if ( $p1->isa($class) ) {
             return 1;
         }
-        if ( !$p1->isa('Point') ) {
+        if ( !$p1->isa($class) ) {
             return 0;
         }
     }
@@ -43,11 +43,11 @@ sub cmp {
 sub add {
     my ( $class, $p1, $p2 ) = @_;
 
-    if ( $class->cmp( $p2, $class->infinity ) == 0 && $p1->isa('Point') ) {
+    if ( $class->cmp( $p2, $class->infinity ) == 0 && $p1->isa($class) ) {
         return $p1;
     }
 
-    if ( $class->cmp( $p1, $class->infinity ) == 0 && $p2->isa('Point') ) {
+    if ( $class->cmp( $p1, $class->infinity ) == 0 && $p2->isa($class) ) {
         return $p2;
     }
 
