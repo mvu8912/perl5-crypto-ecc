@@ -8,6 +8,8 @@ with "Object::GMP";
 has generator => ( is => 'ro' );
 has point     => ( is => 'ro' );
 
+my $Point = 'Crypto::ECC::Point';
+
 sub BUILD {
     my ($self) = @_;
 
@@ -16,7 +18,7 @@ sub BUILD {
 
     my $p = $self->point;
 
-    if ( Point->cmp( Point->mul( $n, $p ), Point->infinity ) != 0 ) {
+    if ( $Point->cmp( $Point->mul( $n, $p ), $Point->infinity ) != 0 ) {
         die "Generator Point order is bad.";
     }
 
@@ -50,7 +52,7 @@ sub verifies {
     my $u1 = ( $hash * $c ) % $n;
     my $u2 = ( $r * $c ) % $n;
     my $xy =
-      Point->add( Point->mul( $u1, $_g ), Point->mul( $u2, $self->point ) );
+      $Point->add( $Point->mul( $u1, $_g ), $Point->mul( $u2, $self->point ) );
     my $v = $xy->x % $n;
 
     return $v == $r;

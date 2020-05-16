@@ -2,7 +2,7 @@ package Crypto::ECC::Point;
 
 use Moo;
 
-extends "Crypto::ECC::CurveFp";
+extends(my $CurveFp = "Crypto::ECC::CurveFp");
 
 has x     => ( is => 'ro' );
 has y     => ( is => 'ro' );
@@ -57,7 +57,7 @@ sub add {
         return $class->infinity;
     }
 
-    if ( CurveFp->cmp( $p1, $p2 ) != 0 ) {
+    if ( $CurveFp->cmp( $p1, $p2 ) != 0 ) {
         die "The Elliptic Curves do not match.";
     }
 
