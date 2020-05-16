@@ -1,0 +1,49 @@
+version: '3.3'
+services:
+    setup:
+        image: michaelpc/perl-base:latest
+        user: root
+        volumes:
+            - cpanfiles:/app/cpanfiles
+        command: chmod 0700 -R /app && chown 1000 -R /app
+    carton:
+        image: michaelpc/openshift:latest
+        volumes:
+            - cpanfiles:/app/cpanfiles
+            - ./:/app/src
+        env_file:
+            - ./cpanfile.env
+        command: echo
+    rnd:
+        image: michaelpc/perl-base:latest
+        volumes:
+            - cpanfiles:/app/cpanfiles
+            - ./:/app/src
+        env_file:
+            - ./cpanfile.env
+        working_dir: /app/src
+        environment:
+            - IF_IN_RUN_0000000100=00
+    build:
+        image: michaelpc/perl-base:latest
+        volumes:
+            - cpanfiles:/app/cpanfiles
+            - ./:/app/src
+        env_file:
+            - ./cpanfile.env
+        working_dir: /app/src
+        environment:
+            - IF_IN_RUN_0000000100=00
+        command: dzil build -v; carton exec dzil test
+    release:
+        image: michaelpc/perl-base:latest
+        volumes:
+            - cpanfiles:/app/cpanfiles
+            - ./:/app/src
+        env_file:
+            - ./cpanfile.env
+        working_dir: /app/src
+        environment:
+            - IF_IN_RUN_0000000100=00
+volumes:
+    cpanfiles:
