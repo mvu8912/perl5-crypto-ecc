@@ -13,7 +13,8 @@ services:
             - ./:/app/src
         env_file:
             - ./cpanfile.env
-        command: echo
+        working_dir: /app/src
+        command: carton exec dzil authordeps --missing
     rnd:
         image: michaelpc/perl-base:latest
         volumes:
@@ -34,7 +35,7 @@ services:
         working_dir: /app/src
         environment:
             - IF_IN_RUN_0000000100=00
-        command: dzil clean; dzil build -v; carton exec dzil test
+        command: carton exec dzil clean; carton exec dzil build
     release:
         image: michaelpc/perl-base:latest
         volumes:

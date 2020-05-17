@@ -12,3 +12,4 @@ dist.ini
 cpanfile.*
 Dockerfile
 docker-compose.yml
+dist/
