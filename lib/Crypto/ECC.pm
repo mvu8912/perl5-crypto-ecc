@@ -58,4 +58,10 @@ Please email me if you wish to extends functions or become a contributor.
 
 Licensed under the MIT License.
 
+=head1 LINKS
+
+B<Git Repo>: L<https://github.com/mvu8912/perl5-crypto-ecc.git>
+
+B<CPAN Module>: L<https://metacpan.org/pod/Crypto::ECC>
+
 =cut

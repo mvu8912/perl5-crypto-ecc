@@ -34,3 +34,9 @@ Please email me if you wish to extends functions or become a contributor.
 # MIT Licence
 
 Licensed under the MIT License.
+
+# LINKS
+
+**Git Repo**: [https://github.com/mvu8912/perl5-crypto-ecc.git](https://github.com/mvu8912/perl5-crypto-ecc.git)
+
+**CPAN Module**: [https://metacpan.org/pod/Crypto::ECC](https://metacpan.org/pod/Crypto::ECC)

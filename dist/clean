@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd Crypto-ECC-*
+
+cp -v META.yml ..
+cp -v README.mkdn ../README.md
+
+docker-compose down
