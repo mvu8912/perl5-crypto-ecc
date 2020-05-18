@@ -35,7 +35,11 @@ services:
         working_dir: /app/src
         environment:
             - IF_IN_RUN_0000000100=00
-        command: carton exec dzil clean; carton exec dzil build
+        command: |
+            rm -v README.md;
+            carton exec dzil clean;
+            carton exec dzil build;
+            cp -v Crypto-ECC-*/README.mkdn README.md
     release:
         image: michaelpc/perl-base:latest
         volumes:
